@@ -12,6 +12,7 @@ class Level:
     def __init__(self):
         self._character = ""
         self.ready = ""
+        self.sentence = ""
         super().__init__()
 
     def __del__(self):
@@ -27,14 +28,14 @@ class Level:
 
     def inputWrong (self, value):
         if value == 0:
-            sentence = "Heyrðu nú mig! Það má aðeins velja svarmöguleika já/nei, svo reyndu aftur!\n"
+            self.sentence = "Heyrðu nú mig! Það má aðeins velja svarmöguleika já/nei, svo reyndu aftur!\n"
         elif value == 1:
-            sentence = "Heyrðu nú mig! Það má aðeins velja svarmöguleika (1, 2, 3, 4), svo reyndu aftur!\n"
+            self.sentence = "Heyrðu nú mig! Það má aðeins velja svarmöguleika (1, 2, 3, 4), svo reyndu aftur!\n"
         elif value == 2:
-            sentence = "Heyrðu nú mig! Þú verður að ýta á \"enter\" til að halda áfram, svo reyndu aftur\n"
+            self.sentence = "Heyrðu nú mig! Þú verður að ýta á \"enter\" til að halda áfram, svo reyndu aftur\n"
         else:
             sys.exit()
-        return sentence
+        return self.sentence
 
     def readyInput(self):
         words = ""
@@ -42,8 +43,8 @@ class Level:
         if self.ready == "":
             return words
         else:
-            sentence = self.inputWrong(2)
-            print(sentence)
+            self.sentence = self.inputWrong(2)
+            print(self.sentence)
             time.sleep(2)
             self.readyInput()
 

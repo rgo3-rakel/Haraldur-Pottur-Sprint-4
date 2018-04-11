@@ -28,14 +28,15 @@ class TestLevel(unittest.TestCase):
         self.assertEqual(self.lev.readyInput(), "")
         self.assertEqual(self.lev.ready, "")
 
+
+
+
+
 #Hvernig fer ég að því að test-a hvort að fallið fari inn í annað fall?
 #Nánast enginn föllin hafa return gildi, hvernig útfæri ég það? -> ef mock, þá hvernig fæ ég það til að virka?
 #Hvernig tækla ég random breyturnar?
 #Ég enda alltaf á því að fara inn í miðjan leikinn þegar í unittestinu! hvernig kemst ég framhjá því??
-    #@patch('__main__.inputWrong')
-    #def test_3(self, mock):
-    #    self.assertNotequal(self.lev.ready, "")
-    #    self.assertTrue(mock.called)
+
 
 
 class TestLevel2(unittest.TestCase):
@@ -67,10 +68,16 @@ class TestHangman(unittest.TestCase):
         self.assertEqual(self.a.rightGuess("ron", "___", "r"), "r__")
 
     def test_5(self):
-        self.a.wordPuzzle() #Er með random breytu til að finna orð, hvernig útfæri ég það í unittest??
-        self.assertEqual(self.a.guessLetter, "R")
-        self.assertTrue(self.a.guessLetter.islower())
+        f = open("eitthvad.txt")
+        sys.stdin = f
+        self.a._lives = 3
+        self.assertEqual(self.a.wordPuzzle(), "still alive")
+        f.close
 
-
+    def test_6(self):
+        sys.stdin = open("eitthvad.txt")
+        self.a._lives = 1
+        self.assertEqual(self.a.wordPuzzle(), "loss")
+        f.close
 
 unittest.main()
