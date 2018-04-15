@@ -9,8 +9,6 @@ class Character:
     def __del__(self):
        print("destructor")
 
-    def setImage():pass
-
     def getDescription(self):
         return self._description
 
