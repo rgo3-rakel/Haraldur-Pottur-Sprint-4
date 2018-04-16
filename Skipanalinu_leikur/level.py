@@ -5,6 +5,10 @@ import random
 from character import Character
 from character import ChooseChar
 from hangman import Hangman
+from Prof4 import prof4
+from Prof1 import prof1
+from Prof3 import prof3
+from Prof2 import prof2
 #from questions import question
 
 class Level:
@@ -136,7 +140,7 @@ class Level2(Level):
         self.chooseWand()
 
     def chooseWand(self):
-        level4 = Level4(self._character)
+        level3 = Level3(self._character)
         listi = [1, 2, 3, 4]
         self.wand = random.randint(1,4)
         listi.remove(self.wand)
@@ -168,7 +172,7 @@ class Level2(Level):
                         self.readyInput()
                         words = "Gakktu hægt um gleðinnar dyr þegar stígur þín fyrstu skref inn í borð 3. " + self._character.getName() + ", þú ert mætt/ur í lokapróf í Hogwarts...\n"
                         print(words)
-                        level4.startLevel4()
+                        level3.questionGame()
                 elif self.choiceWand == listi[0] or self.choiceWand == listi[1] or self.choiceWand == listi[2]:
                     print("Því miður, gettu betur! En hafðu hraðar hendur því Lávarður Valdimar nálgast!\n")
                 else:
@@ -192,12 +196,275 @@ class Level3(Level):
 
     def __init__(self, selectedcharacter):
         self._character = selectedcharacter
-        super(Level, self).__init__()
-
-#SJÁ Í LEVEL3 file-num
 
     def __del__(self):
         print ('destructor')
+
+    def questionGame(self):
+        level4 = Level4(self._character)
+        spurning4 = prof4()
+        spurning1 = prof1()
+        spurning3 = prof3()
+        spurning2 = prof2()
+        print("Þú ert í lokaprófi í Hogwarts og þarf að ná að svara öllum eftirfarandi spurningum rétt, ef þú færð rangt svar ertu fallinn og gerður brottrækur úr skólanum.\n")
+        time.sleep(3)
+        prof = input("Nú stenduru uppi fyrir vali, þú mátt velja úr 4 mismunandi prófum til þess að leysa. Hvaða próf viltu leysa (1,2,3,4)? ")
+
+        if prof == '1':
+            print("Þú hefur valið próf sem hentar vel fyrir Harald Pott\n")
+            spurning1.read_data1_1()
+            time.sleep(3)
+            val = input("Hvert er svarið? (1,2,3,4)\n")
+            if val == '1' or val == '3' or val == '4':
+                print("Nú ert þú í klófestu Lávarðs Valdimars og er " + self._character.getName() + " hér með rekin/nn úr Hogwarts!!")
+                time.sleep(6)
+                self.looseLevel()
+            if val == '2':
+                print("Hárrétt " + self._character.getName() + "!!\n")
+                #Kalla hérna á spurningu 2!
+                spurning1.read_data1_2()
+                time.sleep(3)
+                val = input("Hvert er svarið? (1,2,3,4)\n")
+                if val == '1' or val == '2' or val == '4':
+                    print("Nú ert þú í klófestu Lávarðs Valdimars og er " + self._character.getName() + " hér með rekin/nn úr Hogwarts!!")
+                    time.sleep(6)
+                    self.looseLevel()
+                if val == '3':
+                    print("Hárrétt " + self._character.getName() + "!!\n")
+                    spurning1.read_data1_3()
+                    val = input("Hvert er svarið? (1,2,3,4)\n")
+                    if val == '1' or val == '2' or val == '3':
+                        print("Nú ert þú í klófestu Lávarðs Valdimars og er " + self._character.getName() + " hér með rekin/nn úr Hogwarts!!")
+                        time.sleep(6)
+                        self.looseLevel()
+                    if val == '4':
+                        print("Hárrétt " + self._character.getName() + "!!\n")
+                        spurning1.read_data1_4()
+                        val = input("Hvert er svarið? (1,2,3,4)\n")
+                        if val == '1' or val == '3' or val == '4':
+                            print("Nú ert þú í klófestu Lávarðs Valdimars og er " + self._character.getName() + " hér með gerður brottrækur úr Hogwarts!!")
+                            time.sleep(6)
+                            self.looseLevel()
+                        if val == '2':
+                            print("Hárrétt " + self._character.getName() + "!!\n")
+                            print("Þú hefur nú lokið öllu bóklega námi galdraskólans Hogwarts! Gakktu hægt um gleðinnar dyr og mundu að nýta þér aðeins galdra í neyð.\n")
+                            time.sleep(2)
+                            self.readyInput()
+                            level4.startLevel4()
+                        else:
+                            sentence = self.inputWrong(1)
+                            print(sentence)
+                            time.sleep(2)
+                            self.questionGame()
+                    else:
+                        sentence = self.inputWrong(1)
+                        print(sentence)
+                        time.sleep(2)
+                        self.questionGame()
+                else:
+                    sentence = self.inputWrong(1)
+                    print(sentence)
+                    time.sleep(2)
+                    self.questionGame()
+            else:
+                sentence = self.inputWrong(1)
+                print(sentence)
+                time.sleep(2)
+                self.questionGame()
+
+        if prof == '2':
+            print("Þú hefur valið próf sem hentar vel fyrir Hermínu\n")
+            spurning2.read_data2_1()
+            time.sleep(3)
+            val = input("Hvert er svarið? (1,2,3,4)\n")
+            if val == '1' or val == '2' or val == '3':
+                print("Nú ert þú í klófestu Lávarðs Valdimars og er " + self._character.getName() + " hér með rekin/nn úr Hogwarts!!")
+                time.sleep(6)
+                self.looseLevel()
+            if val == '4':
+                print("Hárrétt " + self._character.getName() + "!!\n")
+                #Kalla hérna á spurningu 2!
+                spurning2.read_data2_2()
+                time.sleep(3)
+                val = input("Hvert er svarið? (1,2,3,4)\n")
+                if val == '1' or val == '2' or val == '4':
+                    print("Nú ert þú í klófestu Lávarðs Valdimars og er " + self._character.getName() + " hér með rekin/nn úr Hogwarts!!")
+                    time.sleep(6)
+                    self.looseLevel()
+                if val == '3':
+                    print("Hárrétt " + self._character.getName() + "!!\n")
+                    spurning2.read_data2_3()
+                    val = input("Hvert er svarið? (1,2,3,4)\n")
+                    if val == '2' or val == '3' or val == '4':
+                        print("Nú ert þú í klófestu Lávarðs Valdimars og er " + self._character.getName() + " hér með rekin/nn úr Hogwarts!!")
+                        time.sleep(6)
+                        self.looseLevel()
+                    if val == '1':
+                        print("Hárrétt " + self._character.getName() + "!!\n")
+                        spurning2.read_data2_4()
+                        val = input("Hvert er svarið? (1,2,3,4)\n")
+                        if val == '1' or val == '2' or val == '3':
+                            print("Nú ert þú í klófestu Lávarðs Valdimars og er " + self._character.getName() + " hér með gerður brottrækur úr Hogwarts!!")
+                            time.sleep(6)
+                            self.looseLevel()
+                        if val == '4':
+                            print("Hárrétt " + self._character.getName() + "!!\n")
+                            print("Þú hefur nú lokið öllu bóklega námi galdraskólans Hogwarts! Gakktu hægt um gleðinnar dyr og mundu að nýta þér aðeins galdra í neyð.\n")
+                            time.sleep(2)
+                            self.readyInput()
+                            level4.startLevel4()
+                        else:
+                            sentence = self.inputWrong(1)
+                            print(sentence)
+                            time.sleep(2)
+                            self.questionGame()
+                    else:
+                        sentence = self.inputWrong(1)
+                        print(sentence)
+                        time.sleep(2)
+                        self.questionGame()
+                else:
+                    sentence = self.inputWrong(1)
+                    print(sentence)
+                    time.sleep(2)
+                    self.questionGame()
+            else:
+                sentence = self.inputWrong(1)
+                print(sentence)
+                time.sleep(2)
+                self.questionGame()
+
+        if prof == '3':
+            print("Þú hefur valið próf sem hentar vel fyrir Rúnar\n")
+            spurning3.read_data3_1()
+            time.sleep(3)
+            val = input("Hvert er svarið? (1,2,3,4)\n")
+            if val == '1' or val == '3' or val == '4':
+                print("Nú ert þú í klófestu Lávarðs Valdimars og er " + self._character.getName() + " hér með rekin/nn úr Hogwarts!!")
+                time.sleep(6)
+                self.looseLevel()
+            if val == '2':
+                print("Hárrétt " + self._character.getName() + "!!\n")
+                #Kalla hérna á spurningu 2!
+                spurning3.read_data3_2()
+                time.sleep(3)
+                val = input("Hvert er svarið? (1,2,3,4)\n")
+                if val == '2' or val == '3' or val == '4':
+                    print("Nú ert þú í klófestu Lávarðs Valdimars og er " + self._character.getName() + " hér með rekin/nn úr Hogwarts!!")
+                    time.sleep(6)
+                    self.looseLevel()
+                if val == '1':
+                    print("Hárrétt " + self._character.getName() + "!!\n")
+                    spurning3.read_data3_3()
+                    val = input("Hvert er svarið? (1,2,3,4)\n")
+                    if val == '1' or val == '3' or val == '4':
+                        print("Nú ert þú í klófestu Lávarðs Valdimars og er " + self._character.getName() + " hér með rekin/nn úr Hogwarts!!")
+                        time.sleep(6)
+                        self.looseLevel()
+                    if val == '2':
+                        print("Hárrétt " + self._character.getName() + "!!\n")
+                        spurning3.read_data3_4()
+                        val = input("Hvert er svarið? (1,2,3,4)\n")
+                        if val == '2' or val == '3' or val == '4':
+                            print("Nú ert þú í klófestu Lávarðs Valdimars og er " + self._character.getName() + " hér með gerður brottrækur úr Hogwarts!!")
+                            time.sleep(6)
+                            self.looseLevel()
+                        if val == '1':
+                            print("Hárrétt " + self._character.getName() + "!!\n")
+                            print("Þú hefur nú lokið öllu bóklega námi galdraskólans Hogwarts! Gakktu hægt um gleðinnar dyr og mundu að nýta þér aðeins galdra í neyð.\n")
+                            time.sleep(2)
+                            self.readyInput()
+                            level4.startLevel4()
+                        else:
+                            sentence = self.inputWrong(1)
+                            print(sentence)
+                            time.sleep(2)
+                            self.questionGame()
+                    else:
+                        sentence = self.inputWrong(1)
+                        print(sentence)
+                        time.sleep(2)
+                        self.questionGame()
+                else:
+                    sentence = self.inputWrong(1)
+                    print(sentence)
+                    time.sleep(2)
+                    self.questionGame()
+            else:
+                sentence = self.inputWrong(1)
+                print(sentence)
+                time.sleep(2)
+                self.questionGame()
+
+
+        if prof == '4':
+            print("Þú hefur valið próf sem hentar vel fyrir Guðrúnu\n")
+            spurning4.read_data4_1()
+            time.sleep(3)
+            val = input("Hvert er svarið? (1,2,3,4)\n")
+            if val == '1' or val == '2' or val == '3':
+                print("Nú ert þú í klófestu Lávarðs Valdimars og er " + self._character.getName() + " hér með rekin/nn úr Hogwarts!!")
+                time.sleep(6)
+                self.looseLevel()
+            if val == '4':
+                print("Hárrétt " + self._character.getName() + "!!\n")
+                #Kalla hérna á spurningu 2!
+                spurning4.read_data4_2()
+                time.sleep(3)
+                val = input("Hvert er svarið? (1,2,3,4)\n")
+                if val == '1' or val == '2' or val == '3':
+                    print("Nú ert þú í klófestu Lávarðs Valdimars og er " + self._character.getName() + " hér með rekin/nn úr Hogwarts!!")
+                    time.sleep(6)
+                    self.looseLevel()
+                if val == '4':
+                    print("Hárrétt " + self._character.getName() + "!!\n")
+                    spurning4.read_data4_3()
+                    val = input("Hvert er svarið? (1,2,3,4)\n")
+                    if val == '1' or val == '2' or val == '3':
+                        print("Nú ert þú í klófestu Lávarðs Valdimars og er " + self._character.getName() + " hér með rekin/nn úr Hogwarts!!")
+                        time.sleep(6)
+                        self.looseLevel()
+                    if val == '4':
+                        print("Hárrétt " + self._character.getName() + "!!\n")
+                        spurning4.read_data4_4()
+                        val = input("Hvert er svarið? (1,2,3,4)\n")
+                        if val == '1' or val == '2' or val == '4':
+                            print("Nú ert þú í klófestu Lávarðs Valdimars og er " + self._character.getName() + " hér með gerður brottrækur úr Hogwarts!!")
+                            time.sleep(6)
+                            self.looseLevel()
+                        if val == '3':
+                            print("Hárrétt " + self._character.getName() + "!!\n")
+                            print("Þú hefur nú lokið öllu bóklega námi galdraskólans Hogwarts! Gakktu hægt um gleðinnar dyr og mundu að nýta þér aðeins galdra í neyð.\n")
+                            time.sleep(2)
+                            self.readyInput()
+                            self.startLevel4()
+                        else:
+                            sentence = self.inputWrong(1)
+                            print(sentence)
+                            time.sleep(2)
+                            self.questionGame()
+                    else:
+                        sentence = self.inputWrong(1)
+                        print(sentence)
+                        time.sleep(2)
+                        self.questionGame()
+                else:
+                    sentence = self.inputWrong(1)
+                    print(sentence)
+                    time.sleep(2)
+                    self.questionGame()
+
+            else:
+                sentence = self.inputWrong(1)
+                print(sentence)
+                time.sleep(2)
+                self.questionGame()
+        else:
+            sentence = self.inputWrong(1)
+            print(sentence)
+            time.sleep(2)
+            self.questionGame()
+
 
 class Level4(Level):
     def __init__(self, selectedCharacter):
