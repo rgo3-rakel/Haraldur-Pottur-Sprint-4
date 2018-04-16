@@ -48,3 +48,7 @@ class prof2():
         for row in c:
             print(row)
         c.close()
+
+prof = prof2()
+prof.create_table()
+prof.data_entry()
