@@ -49,3 +49,7 @@ class prof4():
         for row in c:
             print(row)
         c.close()
+
+prof = prof4()
+prof.create_table()
+prof.data_entry()
